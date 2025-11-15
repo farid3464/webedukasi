@@ -409,11 +409,19 @@ section p{
     .grid-2{
         grid-template-columns:1fr;
     }
-    .footer-content {
-        grid-template-columns:1fr;
-        text-align:center;
+     .footer-content {
+        grid-template-columns: 1.3fr 1fr 1fr; 
+        gap: 20px;
+        text-align:left;
+        padding: 10px;
     }
-    .footer-logo {
-        margin:0 auto 8px;
+
+    .footer-menu, 
+    .footer-sosmed {
+        text-align:left;
+    }
+
+    .footer-brand {
+        text-align:left;
     }
 }
