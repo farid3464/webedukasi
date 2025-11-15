@@ -2,508 +2,95 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>SahabatBelajar - Edukasi</title>
+    <title>SahabatBelajar - Beranda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        :root{
-            --bg-main:#020616;
-            --bg-card:#111827;
-            --accent:#f59e0b;
-            --accent-soft:#1f2937;
-            --text:#e5e7eb;
-            --text-soft:#9ca3af;
-        }
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-            background:var(--bg-main);
-            color:var(--text);
-        }
-
-        a{ color:inherit; text-decoration:none; }
-
-        /* ====== NAVBAR ====== */
-        .navbar{
-            position:fixed;
-            top:0; left:0; right:0;
-            z-index:100;
-            background:rgba(2,6,23,0.95);
-            border-bottom:1px solid #111827;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-inner{
-            max-width:1100px;
-            margin:auto;
-            padding:10px 16px;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-        }
-
-        .brand{
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-        .brand-logo{
-            width:38px;
-            height:38px;
-            border-radius:999px;
-            background:radial-gradient(circle at 30% 20%, #fde68a, #f97316);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:bold;
-            color:#111827;
-        }
-        .brand-name{
-            font-weight:600;
-            font-size:16px;
-        }
-
-        .nav-links{
-            display:flex;
-            gap:18px;
-            align-items:center;
-        }
-        .nav-links a{
-            font-size:14px;
-            color:var(--text-soft);
-        }
-        .nav-links a.active{
-            padding:6px 16px;
-            border-radius:999px;
-            background:var(--accent-soft);
-            color:#fff;
-        }
-        .nav-links a.btn-nav{
-            padding:6px 16px;
-            border-radius:999px;
-            background:var(--accent);
-            color:#111827;
-            font-weight:600;
-        }
-
-        /* hamburger */
-        .nav-toggle{
-            display:none;
-            width:30px;
-            height:30px;
-            border-radius:999px;
-            border:1px solid #4b5563;
-            align-items:center;
-            justify-content:center;
-            cursor:pointer;
-        }
-        .nav-toggle span{
-            width:16px;
-            height:2px;
-            background:#e5e7eb;
-            position:relative;
-        }
-        .nav-toggle span::before,
-        .nav-toggle span::after{
-            content:"";
-            position:absolute;
-            left:0;
-            width:16px;
-            height:2px;
-            background:#e5e7eb;
-        }
-        .nav-toggle span::before{ top:-5px; }
-        .nav-toggle span::after{ top:5px; }
-
-        /* mobile menu */
-        .nav-drawer{
-            display:none;
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.75);
-            z-index:90;
-        }
-        .nav-drawer-content{
-            width:75%;
-            max-width:260px;
-            height:100%;
-            background:#020617;
-            padding:18px 20px;
-        }
-        .nav-drawer-close{
-            text-align:right;
-            margin-bottom:20px;
-            font-size:24px;
-            cursor:pointer;
-        }
-        .nav-drawer a{
-            display:block;
-            margin:10px 0;
-            font-size:16px;
-            color:var(--text-soft);
-        }
-        .nav-drawer a.btn-nav{
-            display:inline-block;
-            margin-top:10px;
-        }
-        .nav-drawer a.active{
-            color:#fff;
-            font-weight:600;
-        }
-
-        /* ====== MAIN CONTENT ====== */
-        main{
-            max-width:1100px;
-            margin:0 auto;
-            padding:90px 16px 40px;
-        }
-
-        .hero{
-            display:grid;
-            grid-template-columns:1.3fr 1fr;
-            gap:40px;
-            align-items:center;
-        }
-        .hero-kiri h1{
-            font-size:38px;
-            margin-bottom:12px;
-        }
-        .hero-kiri h1 span{
-            color:var(--accent);
-        }
-        .hero-kiri p{
-            color:var(--text-soft);
-            font-size:15px;
-            line-height:1.5;
-        }
-        .hero-btns{
-            margin-top:20px;
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-        }
-        .btn{
-            padding:10px 22px;
-            border-radius:999px;
-            border:none;
-            font-size:14px;
-            cursor:pointer;
-        }
-        .btn-primary{
-            background:var(--accent);
-            color:#111827;
-            font-weight:bold;
-        }
-        .btn-outline{
-            background:transparent;
-            border:1px solid #4b5563;
-            color:var(--text);
-        }
-
-        .hero-kanan{
-            background-image:url('https://images.pexels.com/photos/4144222/pexels-photo-4144222.jpeg?auto=compress&cs=tinysrgb&w=800');
-            background-size:cover;
-            background-position:center;
-            border-radius:26px;
-            min-height:220px;
-            position:relative;
-            overflow:hidden;
-        }
-        .hero-kanan::after{
-            content:"Belajar hari ini, panen masa depan.";
-            position:absolute;
-            left:16px;
-            bottom:16px;
-            right:16px;
-            padding:10px 14px;
-            border-radius:16px;
-            background:rgba(15,23,42,0.85);
-            font-size:13px;
-        }
-
-        /* statistic cards */
-        .stats{
-            margin-top:30px;
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:16px;
-        }
-        .stat-card{
-            background:linear-gradient(145deg,#020617,#0f172a);
-            border-radius:18px;
-            padding:18px 16px;
-            box-shadow:0 18px 40px rgba(0,0,0,0.45);
-        }
-        .stat-number{
-            font-size:22px;
-            font-weight:bold;
-            margin-bottom:4px;
-        }
-        .stat-label{
-            font-size:13px;
-            color:var(--text-soft);
-        }
-
-        /* section */
-        section{
-            margin-top:40px;
-        }
-        section h2{
-            font-size:22px;
-            margin-bottom:8px;
-        }
-        section p{
-            color:var(--text-soft);
-            font-size:14px;
-            line-height:1.5;
-        }
-
-        .grid-2{
-            display:grid;
-            grid-template-columns:1.2fr 1fr;
-            gap:24px;
-            margin-top:18px;
-        }
-        .list-bullet li{
-            margin-bottom:6px;
-            font-size:14px;
-        }
-
-        .card-kecil{
-            background:var(--bg-card);
-            border-radius:16px;
-            padding:14px 16px;
-            margin-bottom:10px;
-            font-size:14px;
-        }
-        .card-kecil b{ color:var(--accent); }
-
-        footer{
-            text-align:center;
-            padding:20px 0 10px;
-            font-size:12px;
-            color:var(--text-soft);
-        }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width:768px){
-            .nav-links{
-                display:none;
-            }
-            .nav-toggle{
-                display:flex;
-            }
-            main{
-                padding-top:80px;
-            }
-            .hero{
-                grid-template-columns:1fr;
-            }
-            .hero-kanan{
-                order:-1;
-            }
-            .hero-kiri h1{
-                font-size:28px;
-            }
-            .stats{
-                grid-template-columns:1fr;
-            }
-            .grid-2{
-                grid-template-columns:1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="nav-inner">
-            <div class="brand">
-                <div class="brand-logo">SB</div>
-                <div class="brand-name">SahabatBelajar</div>
-            </div>
-
-            <nav class="nav-links">
-                <a href="#beranda" class="active">Beranda</a>
-                <a href="#materi">Materi</a>
-                <a href="#tips">Tips</a>
-                <a href="#tentang">Tentang</a>
-                <a href="#kontak" class="btn-nav">Kontak</a>
-            </nav>
-
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-            </div>
+<header class="navbar">
+    <div class="nav-inner">
+        <div class="brand">
+            <div class="brand-logo">SB</div>
+            <div class="brand-name">SahabatBelajar</div>
         </div>
-    </header>
 
-    <!-- DRAWER MOBILE -->
-    <div class="nav-drawer" id="navDrawer">
-        <div class="nav-drawer-content">
-            <div class="brand" style="margin-bottom:12px;">
-                <div class="brand-logo">SB</div>
-                <div class="brand-name">SahabatBelajar</div>
-            </div>
-            <div class="nav-drawer-close" id="navClose">&times;</div>
-            <a href="#beranda" class="active">Beranda</a>
-            <a href="#materi">Materi</a>
-            <a href="#tips">Tips</a>
-            <a href="#tentang">Tentang</a>
-            <a href="#kontak" class="btn-nav">Kontak</a>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Beranda</a>
+            <a href="materi.html">Materi</a>
+            <a href="tentang.html">Tentang</a>
+            <a href="kontak.html" class="btn-nav">Kontak</a>
+        </nav>
+
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
         </div>
     </div>
+</header>
 
-    <!-- MAIN CONTENT -->
-    <main id="beranda">
-        <section class="hero">
-            <div class="hero-kiri">
-                <h1>Jelajahi <span>Dunia Edukasi</span> Tanpa Batas</h1>
-                <p>
-                    Dari pelajaran sekolah sampai skill dunia kerja, SahabatBelajar membantu kamu
-                    memahami materi dengan cara yang sederhana, terarah, dan menyenangkan.
-                </p>
-                <div class="hero-btns">
-                    <button class="btn btn-primary" onclick="document.getElementById('materi').scrollIntoView({behavior:'smooth'})">
-                        Lihat Materi
-                    </button>
-                    <button class="btn btn-outline" onclick="document.getElementById('tips').scrollIntoView({behavior:'smooth'})">
-                        Pelajari Lebih Lanjut
-                    </button>
-                </div>
-            </div>
+<div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-content">
+        <div class="brand" style="margin-bottom:12px;">
+            <div class="brand-logo">SB</div>
+            <div class="brand-name">SahabatBelajar</div>
+        </div>
+        <div class="nav-drawer-close" id="navClose">&times;</div>
+        <a href="index.html" class="active">Beranda</a>
+        <a href="materi.html">Materi</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="kontak.html" class="btn-nav">Kontak</a>
+    </div>
+</div>
 
-            <div class="hero-kanan"></div>
-        </section>
-
-        <!-- STATISTIK -->
-        <section class="stats">
-            <div class="stat-card">
-                <div class="stat-number">5000+</div>
-                <div class="stat-label">Siswa terbantu memahami materi</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Ringkasan materi & modul belajar</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Video & latihan interaktif</div>
-            </div>
-        </section>
-
-        <!-- MATERI -->
-        <section id="materi">
-            <h2>Materi Edukasi</h2>
-            <p>SahabatBelajar fokus pada tiga pilar utama untuk mendukung proses belajar kamu.</p>
-
-            <div class="grid-2">
-                <ul class="list-bullet">
-                    <li><b>1. Konsep Dasar</b> – Penjelasan singkat dan jelas tentang materi sekolah.</li>
-                    <li><b>2. Contoh Soal</b> – Latihan soal dengan pembahasan langkah demi langkah.</li>
-                    <li><b>3. Penerapan Nyata</b> – Contoh penggunaan materi dalam kehidupan sehari-hari.</li>
-                    <li><b>4. Refleksi</b> – Pertanyaan sederhana untuk mengecek sejauh mana kamu paham.</li>
-                </ul>
-
-                <div>
-                    <div class="card-kecil">
-                        <b>Matematika</b><br>
-                        Rumus cepat, trik berhitung, dan latihan soal agar kamu tidak takut lagi dengan angka.
-                    </div>
-                    <div class="card-kecil">
-                        <b>Bahasa Indonesia</b><br>
-                        Cara membuat paragraf yang baik, teks pidato, dan latihan soal membaca pemahaman.
-                    </div>
-                    <div class="card-kecil">
-                        <b>IPA & Literasi Digital</b><br>
-                        Mengenal sains dasar sekaligus belajar menggunakan internet secara sehat dan aman.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TIPS BELAJAR -->
-        <section id="tips">
-            <h2>Tips Belajar Efektif</h2>
-            <p>Beberapa kebiasaan kecil yang bisa membuat proses belajar kamu jauh lebih maksimal:</p>
-            <ul class="list-bullet" style="margin-top:10px;">
-                <li>Tentukan target kecil setiap hari, misalnya paham 1 bab atau 5 soal.</li>
-                <li>Gunakan teknik <i>pomodoro</i>: 25 menit belajar, 5 menit istirahat.</li>
-                <li>Tulis ulang poin penting dengan bahasa kamu sendiri.</li>
-                <li>Diskusikan materi dengan teman, jangan belajar sendirian terus.</li>
-                <li>Jauhkan HP saat belajar jika tidak dipakai untuk materi.</li>
-            </ul>
-        </section>
-
-        <!-- TENTANG -->
-        <section id="tentang">
-            <h2>Tentang SahabatBelajar</h2>
+<main>
+    <section class="hero">
+        <div class="hero-kiri">
+            <h1>Jelajahi <span>Dunia Edukasi</span> Tanpa Batas</h1>
             <p>
-                SahabatBelajar adalah website edukasi sederhana yang dibuat untuk membantu siswa
-                memahami materi sekolah dan mengembangkan skill belajar mandiri. Konten bisa kamu
-                kembangkan sendiri sesuai kebutuhan tugas kuliah atau projek pribadi.
+                Dari pelajaran sekolah sampai skill dunia kerja, SahabatBelajar membantu kamu
+                memahami materi dengan cara yang sederhana, terarah, dan menyenangkan.
             </p>
-        </section>
-
-        <!-- KONTAK -->
-        <section id="kontak">
-            <h2>Kontak</h2>
-            <p style="margin-bottom:10px;">
-                Punya ide pengembangan atau ingin menambahkan materi baru? Silakan isi data berikut:
-            </p>
-            <div class="card-kecil">
-                <form>
-                    <div style="margin-bottom:8px;">
-                        <label>Nama:<br>
-                            <input type="text" style="width:100%;padding:8px;border-radius:8px;border:1px solid #4b5563;background:#020617;color:#e5e7eb;">
-                        </label>
-                    </div>
-                    <div style="margin-bottom:8px;">
-                        <label>Email:<br>
-                            <input type="email" style="width:100%;padding:8px;border-radius:8px;border:1px solid #4b5563;background:#020617;color:#e5e7eb;">
-                        </label>
-                    </div>
-                    <div style="margin-bottom:8px;">
-                        <label>Pesan:<br>
-                            <textarea rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid #4b5563;background:#020617;color:#e5e7eb;"></textarea>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Kirim</button>
-                </form>
+            <div class="hero-btns">
+                <button class="btn btn-primary" onclick="location.href='materi.html'">
+                    Lihat Materi
+                </button>
+                <button class="btn btn-outline" onclick="location.href='tentang.html'">
+                    Pelajari Lebih Lanjut
+                </button>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="hero-kanan"></div>
+    </section>
 
-    <footer>
-        &copy; 2025 SahabatBelajar. Website edukasi responsif untuk tugas dan latihan.
-    </footer>
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-number">5000+</div>
+            <div class="stat-label">Siswa terbantu memahami materi</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Ringkasan materi & modul belajar</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Video & latihan interaktif</div>
+        </div>
+    </section>
 
-    <script>
-        // Toggle menu mobile
-        const navToggle = document.getElementById('navToggle');
-        const navDrawer = document.getElementById('navDrawer');
-        const navClose  = document.getElementById('navClose');
+    <section>
+        <h2>Mengapa Belajar Itu Penting?</h2>
+        <p>
+            Pendidikan membantu kita mengenal diri sendiri, dunia sekitar, dan menyiapkan masa depan.
+            Di website ini kamu bisa mengembangkan pemahaman konsep, melatih soal, dan belajar
+            kebiasaan belajar yang baik.
+        </p>
+    </section>
+</main>
 
-        navToggle.addEventListener('click', () => {
-            navDrawer.style.display = 'block';
-        });
+<footer>
+    &copy; 2025 SahabatBelajar. Beranda.
+</footer>
 
-        navClose.addEventListener('click', () => {
-            navDrawer.style.display = 'none';
-        });
-
-        // Tutup drawer jika klik area gelap di luar panel
-        navDrawer.addEventListener('click', (e)=>{
-            if(e.target === navDrawer){
-                navDrawer.style.display = 'none';
-            }
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
